@@ -1,0 +1,19 @@
+server:
+  port: 10019
+#  port: 10016
+
+spring:
+  application:
+    name: mock
+
+logging:
+  config: classpath:logback-test.xml
+
+kingmeter:
+  requestBusiness: false
+  business:
+    baseUrl : http://127.0.0.1:10013
+
+socket:
+  port: 10017
+#  port: 10015

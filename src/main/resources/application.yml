@@ -1,0 +1,57 @@
+
+spring:
+  profiles:
+    active: test
+  jackson:
+    serialization:
+      indent-output: true
+
+device:
+  loginFunctionCode: 49153
+
+kingmeter:
+  requestBusiness: false
+  default:
+    MinSoc : 10
+    companyCode: 4701
+    timezone: 8
+  tokenKey : a
+  tokenValue : b
+  ota:
+    tracker: true
+
+log:
+  message: true # wifimaster(2001) <==message==> socket server(2002)
+  model: true # wifimaster <== model ==> socket server
+  business: true # wifimaster <== business logic ==> socket server
+  exception: true # all kinds of exception
+  http: true
+
+socket:
+  port: 7777
+  charset: utf-8
+  start_code_1: 0x40
+  start_code_2: 0x3A
+  end_code_1: 0x0D
+  end_code_2: 0x0A
+  token_length: 32
+  # readIdleTimeLimit
+  readIdleTimeLimit: 200
+  writeIdleTimeLimit: 0
+  allIdleTimeLimit: 0
+  #other config
+  waitSeconds: 100
+
+  bossThreads: 2
+  workerThreads: 8
+  useLinuxNativeEpoll: false
+  tcpNoDelay: true
+  tcpSendBufferSize: -1
+  tcpReceiveBufferSize: 200
+  tcpKeepAlive: true
+  soLinger: -1
+  reuseAddress: false
+  acceptBackLog: 1024
+
+server:
+  port: 7778
