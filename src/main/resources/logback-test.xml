@@ -32,8 +32,8 @@
     </appender>
     <appender name="LOGSTASH"
               class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-                <destination>127.0.0.1:5005</destination>
-<!--        <destination>39.100.88.118:5005</destination>-->
+<!--                <destination>127.0.0.1:5005</destination>-->
+        <destination>39.100.88.118:5005</destination>
         <!-- encoder必须配置,有多种可选 -->
         <encoder charset="UTF-8"
                  class="net.logstash.logback.encoder.LogstashEncoder">
@@ -49,7 +49,7 @@
         <level value="info"/>
                 <appender-ref ref="FILE"/>
         <appender-ref ref="LOGSTASH"/>
-<!--        <appender-ref ref="STDOUT"/>-->
+        <appender-ref ref="STDOUT"/>
     </root>
 
     <property name="OTA_ENCODER_PATTERN"

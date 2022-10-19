@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 @Slf4j
@@ -68,7 +69,7 @@ public class AttachedApi {
     @PutMapping("/all")
     public String setDeviceMap(@RequestBody SiteMapDto siteMapDto){
         long siteId = siteMapDto.getSiteId();
-        ConcurrentMap<Long,Map<String, String>> deviceMap = CacheUtil.getInstance().getDeviceInfoMap();
+        ConcurrentHashMap<Long,Map<String, String>> deviceMap = CacheUtil.getInstance().getDeviceInfoMap();
         Map<String, String> siteMap = deviceMap.get(siteId);
         siteMap.put("ast",String.valueOf(siteMapDto.getAst()));
         siteMap.put("acm",String.valueOf(siteMapDto.getAcm()));
