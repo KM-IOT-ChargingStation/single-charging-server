@@ -25,6 +25,9 @@
             <fileNamePattern>${LOG_HOME}/${APP_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>10</maxHistory>
         </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${ENCODER_PATTERN}</pattern>
             <charset>UTF-8</charset>
@@ -32,8 +35,11 @@
     </appender>
     <appender name="LOGSTASH"
               class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-<!--                <destination>127.0.0.1:5005</destination>-->
+        <!--                <destination>127.0.0.1:5005</destination>-->
         <destination>39.100.88.118:5005</destination>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
         <!-- encoder必须配置,有多种可选 -->
         <encoder charset="UTF-8"
                  class="net.logstash.logback.encoder.LogstashEncoder">
@@ -46,10 +52,9 @@
     </logger>
 
     <root>
-        <level value="info"/>
-                <appender-ref ref="FILE"/>
+        <appender-ref ref="FILE"/>
         <appender-ref ref="LOGSTASH"/>
-        <appender-ref ref="STDOUT"/>
+<!--        <appender-ref ref="STDOUT"/>-->
     </root>
 
     <property name="OTA_ENCODER_PATTERN"
