@@ -36,7 +36,7 @@
     <appender name="LOGSTASH"
               class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <!--                <destination>127.0.0.1:5005</destination>-->
-        <destination>39.100.88.118:5005</destination>
+        <destination>127.0.0.1:5005</destination>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
@@ -47,15 +47,21 @@
         </encoder>
     </appender>
 
-    <logger name="com.kingmeter">
-        <level value="ALL"/>
-    </logger>
-
-    <root>
-        <appender-ref ref="FILE"/>
-        <appender-ref ref="LOGSTASH"/>
-<!--        <appender-ref ref="STDOUT"/>-->
-    </root>
+    <appender name="ERROR-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <encoder>
+            <pattern>${ENCODER_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/error_${APP_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+    </appender>
 
     <property name="OTA_ENCODER_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS}|%marker|%msg%n"/>
@@ -73,8 +79,21 @@
         </encoder>
     </appender>
 
+    <logger name="com.kingmeter">
+        <level value="ALL"/>
+    </logger>
+
     <logger name="ota_tracker">
         <appender-ref ref="OTA_FILE"/>
     </logger>
+
+    <root>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="ERROR-LOG"/>
+        <appender-ref ref="LOGSTASH"/>
+<!--        <appender-ref ref="STDOUT"/>-->
+    </root>
+
+
 
 </configuration>

@@ -76,7 +76,7 @@ public class AttachedApi {
         siteMap.put("minbsoc",String.valueOf(siteMapDto.getMinbsoc()));
         siteMap.put("uid",siteMapDto.getUid());
         deviceMap.put(siteId,siteMap);
-        CacheUtil.getInstance().setDeviceInfoMap(deviceMap);
+        CacheUtil.getInstance().getDeviceInfoMap().put(siteId,siteMap);
         return "okay";
     }
 

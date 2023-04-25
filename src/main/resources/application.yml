@@ -18,7 +18,7 @@ kingmeter:
   tokenKey : a
   tokenValue : b
   ota:
-    tracker: true
+    tracker: false
 
 log:
   message: true # wifimaster(2001) <==message==> socket server(2002)
